@@ -1,6 +1,6 @@
 package com.tw.step8.assignment2;
 
-import com.tw.step8.assignment2.exception.InvalidProbability;
+import com.tw.step8.assignment2.exception.InvalidProbabilityException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,16 +9,16 @@ class ChanceTest {
   @Test
   void shouldThrowExceptionForInvalidProbability() {
     try {
-      Chance chance = Chance.createChance(5.9);
-    } catch (InvalidProbability e) {
+      Chance chance = Chance.create(5.9);
+    } catch (InvalidProbabilityException e) {
       assertEquals("Invalid chance representation : 5.9", e.getMessage());
     }
   }
 
   @Test
-  void shouldReturnComplementOfProbability() throws InvalidProbability {
-    Chance chance = Chance.createChance(0.9);
-    Chance expected = Chance.createChance(0.1);
+  void shouldReturnComplementOfProbability() throws InvalidProbabilityException {
+    Chance chance = Chance.create(0.9);
+    Chance expected = Chance.create(0.1);
 
     Chance actual = chance.complement();
 
@@ -26,22 +26,27 @@ class ChanceTest {
   }
 
   @Test
-  void shouldReturnProbabilityOfBothSame() throws InvalidProbability {
-    Chance chance = Chance.createChance(0.5);
-    Chance expected = Chance.createChance(0.25);
+  void shouldReturnAndOfProbability() throws InvalidProbabilityException {
+    Chance chanceOfGettingOneInDice = Chance.create(1.0 / 6);
+    Chance chanceOfGettingTails = Chance.create(0.5);
+    Chance expected = Chance.create(0.08);
 
-    Chance actual = chance.intersectionProbability(Chance.createChance(0.5));
+    Chance actual = chanceOfGettingOneInDice.and(chanceOfGettingTails);
 
     assertTrue(actual.isDifferenceWithinDelta(expected, 0.1));
   }
 
   @Test
-  void shouldReturnProbabilityOfAtLeastOne() throws InvalidProbability {
-    Chance chance = Chance.createChance(0.5);
-    Chance expected = Chance.createChance(0.75);
+  void shouldReturnOrOfProbability() throws InvalidProbabilityException {
+    Chance chanceOfGettingTwoInDice = Chance.create(1.0 / 6);
+    Chance chanceOfGettingTails = Chance.create(0.5);
+    Chance expectedChance1 = Chance.create(7.0 / 12);
+    Chance expectedChance2 = Chance.create(11.0 / 36);
 
-    Chance actual = chance.unionProbability(Chance.createChance(0.5));
+    Chance actualChance1 = chanceOfGettingTwoInDice.or(chanceOfGettingTails);
+    Chance actualChance2 = chanceOfGettingTwoInDice.or(chanceOfGettingTwoInDice);
 
-    assertTrue(actual.isDifferenceWithinDelta(expected, 0.1));
+    assertTrue(actualChance1.isDifferenceWithinDelta(expectedChance1, 0.1));
+    assertTrue(expectedChance2.isDifferenceWithinDelta(expectedChance2, 0.01));
   }
 }

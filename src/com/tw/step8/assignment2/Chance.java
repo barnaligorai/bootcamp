@@ -1,40 +1,36 @@
 package com.tw.step8.assignment2;
 
-import com.tw.step8.assignment2.exception.InvalidProbability;
+import com.tw.step8.assignment2.exception.InvalidProbabilityException;
 
 public class Chance {
-  private final double probability;
+  private final double value;
 
-  private Chance(double probability) {
-    this.probability = probability;
+  private Chance(double value) {
+    this.value = value;
   }
 
-  public static Chance createChance(double chance) throws InvalidProbability {
+  public static Chance create(double chance) throws InvalidProbabilityException {
     if (chance <= 1 && chance >= 0) {
       return new Chance(chance);
     }
-    throw new InvalidProbability(chance);
+    throw new InvalidProbabilityException(chance);
   }
 
-  public Chance complement() throws InvalidProbability {
-    return Chance.createChance(1 - this.probability);
+  public Chance complement() throws InvalidProbabilityException {
+    return Chance.create(1 - this.value);
   }
 
-  public Chance intersectionProbability(Chance anotherChance) throws InvalidProbability {
-    double p = this.probability * anotherChance.probability;
-    return Chance.createChance(p);
+  public Chance and (Chance otherChance) throws InvalidProbabilityException {
+    double probability = this.value * otherChance.value;
+    return Chance.create(probability);
   }
 
-  public Chance unionProbability(Chance anotherChance) throws InvalidProbability {
-    double p = 1 - this.intersectionProbability(anotherChance).probability;
-    return Chance.createChance(p);
+  public Chance or(Chance otherChance) throws InvalidProbabilityException {
+    return (this.complement().and(otherChance.complement())).complement();
   }
 
-  public boolean isDifferenceWithinDelta(Chance anotherChance, double delta){
-    double probability1 = this.probability;
-    double probability2 = anotherChance.probability;
-
-    return Math.abs(probability2 - probability1) <= delta;
+  public boolean isDifferenceWithinDelta(Chance otherChance, double delta){
+    return Math.abs(otherChance.value - this.value) <= delta;
   }
 
 }

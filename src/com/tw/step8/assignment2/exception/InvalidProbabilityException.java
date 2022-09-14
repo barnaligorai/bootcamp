@@ -1,9 +1,10 @@
 package com.tw.step8.assignment2.exception;
 
-public class InvalidProbability extends Exception {
+public class InvalidProbabilityException extends Exception {
   private final double chance;
 
-  public InvalidProbability(double chance) {
+  public InvalidProbabilityException(double chance) {
+    super();
     this.chance = chance;
   }
 
