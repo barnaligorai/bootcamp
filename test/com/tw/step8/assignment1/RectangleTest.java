@@ -8,13 +8,13 @@ class RectangleTest {
 
   @Test
   void shouldReturnAreaOfRectangle() {
-    Rectangle rectangle = new Rectangle(10,10);
-    assertEquals(100,rectangle.area());
+    Rectangle rectangle = new Rectangle(10.0,10.0);
+    assertEquals(100.0,rectangle.area());
   }
 
   @Test
   void shouldReturnPerimeterOfRectangle() {
-    Rectangle rectangle = new Rectangle(10,10);
-    assertEquals(40, rectangle.perimeter());
+    Rectangle rectangle = new Rectangle(10.0,10.0);
+    assertEquals(40.0, rectangle.perimeter());
   }
 }
