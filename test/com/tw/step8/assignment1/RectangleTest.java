@@ -7,8 +7,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class RectangleTest {
 
   @Test
-  void shouldReturnTheAreaOfTheRectangle() {
+  void shouldReturnAreaOfRectangle() {
     Rectangle rectangle = new Rectangle(10,10);
     assertEquals(100,rectangle.area());
+  }
+
+  @Test
+  void shouldReturnPerimeterOfRectangle() {
+    Rectangle rectangle = new Rectangle(10,10);
+    assertEquals(40, rectangle.perimeter());
   }
 }
