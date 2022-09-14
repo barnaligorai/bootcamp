@@ -20,10 +20,21 @@ public class Chance {
     return Chance.createChance(1 - this.probability);
   }
 
+  public Chance intersectionProbability(Chance anotherChance) throws InvalidProbability {
+    double p = this.probability * anotherChance.probability;
+    return Chance.createChance(p);
+  }
+
+  public Chance unionProbability(Chance anotherChance) throws InvalidProbability {
+    double p = 1 - this.intersectionProbability(anotherChance).probability;
+    return Chance.createChance(p);
+  }
+
   public boolean isDifferenceWithinDelta(Chance anotherChance, double delta){
     double probability1 = this.probability;
     double probability2 = anotherChance.probability;
 
     return Math.abs(probability2 - probability1) <= delta;
   }
+
 }

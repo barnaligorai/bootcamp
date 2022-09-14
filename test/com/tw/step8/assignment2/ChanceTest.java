@@ -22,8 +22,26 @@ class ChanceTest {
 
     Chance actual = chance.complement();
 
-    assertTrue(actual.isDifferenceWithinDelta(expected,0.1));
+    assertTrue(actual.isDifferenceWithinDelta(expected, 0.1));
   }
 
+  @Test
+  void shouldReturnProbabilityOfBothSame() throws InvalidProbability {
+    Chance chance = Chance.createChance(0.5);
+    Chance expected = Chance.createChance(0.25);
 
+    Chance actual = chance.intersectionProbability(Chance.createChance(0.5));
+
+    assertTrue(actual.isDifferenceWithinDelta(expected, 0.1));
+  }
+
+  @Test
+  void shouldReturnProbabilityOfAtLeastOne() throws InvalidProbability {
+    Chance chance = Chance.createChance(0.5);
+    Chance expected = Chance.createChance(0.75);
+
+    Chance actual = chance.unionProbability(Chance.createChance(0.5));
+
+    assertTrue(actual.isDifferenceWithinDelta(expected, 0.1));
+  }
 }
