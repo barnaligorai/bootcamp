@@ -8,6 +8,6 @@ public class CompareLength {
   }
 
   public boolean compare(double unit1Value, double unit2Value) {
-    return unit1Value * this.ratio == unit2Value;
+    return unit1Value / this.ratio == unit2Value;
   }
 }
