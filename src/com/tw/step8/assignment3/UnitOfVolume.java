@@ -12,4 +12,10 @@ public enum UnitOfVolume implements Unit {
   public double getBaseValue() {
     return baseValueInLiter;
   }
+
+  @Override
+  public Unit getBase() {
+    return UnitOfVolume.LITER;
+  }
+
 }
