@@ -7,7 +7,8 @@ public class CompareUnit {
     this.ratio = ratio;
   }
 
-  public boolean compare(double unit1Value, double unit2Value) {
-    return unit1Value / this.ratio == unit2Value;
+  public int compare(double unit1Value, double unit2Value) {
+    double convertedValueOfUnit1 = unit1Value / this.ratio;
+    return Double.compare(convertedValueOfUnit1, unit2Value);
   }
 }
