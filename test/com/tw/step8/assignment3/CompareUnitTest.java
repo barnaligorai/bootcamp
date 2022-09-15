@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CompareLengthTest {
+class CompareUnitTest {
   @Test
   void shouldCompareForFeetAndInch() {
-    CompareLength compareFeetAndInch = new CompareLength(1.0 / 12);
+    CompareUnit compareFeetAndInch = new CompareUnit(1.0 / 12);
 
     assertTrue(compareFeetAndInch.compare(2, 24));
     assertTrue(compareFeetAndInch.compare(3.1, 37.2));
@@ -16,7 +16,7 @@ class CompareLengthTest {
 
   @Test
   void shouldCompareForInchAndFeet() {
-    CompareLength compareInchAndFeet = new CompareLength(12);
+    CompareUnit compareInchAndFeet = new CompareUnit(12);
 
     assertTrue(compareInchAndFeet.compare(24, 2));
     assertTrue(compareInchAndFeet.compare(30, 2.5));
@@ -25,7 +25,7 @@ class CompareLengthTest {
 
   @Test
   void shouldCompareForInchAndCM() {
-    CompareLength compareInchAndCM = new CompareLength(2.0 / 5);
+    CompareUnit compareInchAndCM = new CompareUnit(2.0 / 5);
 
     assertTrue(compareInchAndCM.compare(2, 5));
     assertTrue(compareInchAndCM.compare(2.5, 6.25));
@@ -34,7 +34,7 @@ class CompareLengthTest {
 
   @Test
   void shouldCompareForCMAndInch() {
-    CompareLength compareCMAndInch = new CompareLength(5.0 / 2);
+    CompareUnit compareCMAndInch = new CompareUnit(5.0 / 2);
 
     assertTrue(compareCMAndInch.compare(5, 2));
     assertTrue(compareCMAndInch.compare(7.5, 3));
@@ -43,7 +43,7 @@ class CompareLengthTest {
 
   @Test
   void shouldCompareForCMAndMM() {
-    CompareLength compareCMAndMM = new CompareLength(1.0 / 10);
+    CompareUnit compareCMAndMM = new CompareUnit(1.0 / 10);
 
     assertTrue(compareCMAndMM.compare(1, 10));
     assertTrue(compareCMAndMM.compare(2.2, 22));

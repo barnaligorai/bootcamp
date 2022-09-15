@@ -1,9 +1,9 @@
 package com.tw.step8.assignment3;
 
-public class CompareLength {
+public class CompareUnit {
   private final double ratio;
 
-  public CompareLength(double ratio) {
+  public CompareUnit(double ratio) {
     this.ratio = ratio;
   }
 
