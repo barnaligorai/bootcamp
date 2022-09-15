@@ -8,18 +8,35 @@ class MeasurementTest {
 
   @Test
   void compareLengthsInFeetAndInch() {
+    Measurement<UnitOfLength> oneFeet = new Measurement<UnitOfLength>(UnitOfLength.FEET, 1);
     Measurement<UnitOfLength> twoFeet = new Measurement<UnitOfLength>(UnitOfLength.FEET, 2);
     Measurement<UnitOfLength> twentyFourInch = new Measurement<UnitOfLength>(UnitOfLength.INCH, 24);
 
     assertEquals(0, twoFeet.compare(twentyFourInch));
+    assertEquals(1, twoFeet.compare(oneFeet));
+    assertEquals(-1, oneFeet.compare(twoFeet));
+  }
+
+  @Test
+  void compareLengthsInInchAndCM() {
+    Measurement<UnitOfLength> oneInch = new Measurement<UnitOfLength>(UnitOfLength.INCH, 1);
+    Measurement<UnitOfLength> twoInch = new Measurement<UnitOfLength>(UnitOfLength.INCH, 2);
+    Measurement<UnitOfLength> twoAndHalfCM = new Measurement<UnitOfLength>(UnitOfLength.CM, 2.5);
+
+    assertEquals(0, oneInch.compare(twoAndHalfCM));
+    assertEquals(1, twoInch.compare(oneInch));
+    assertEquals(-1, oneInch.compare(twoInch));
   }
 
   @Test
   void compareVolumes() {
+    Measurement<UnitOfVolume> oneGallon = new Measurement<UnitOfVolume>(UnitOfVolume.GALLON, 1);
     Measurement<UnitOfVolume> twoGallon = new Measurement<UnitOfVolume>(UnitOfVolume.GALLON, 2);
     Measurement<UnitOfVolume> volumeInLiter = new Measurement<UnitOfVolume>(UnitOfVolume.LITER, 7.56);
 
     assertEquals(0, twoGallon.compare(volumeInLiter));
+    assertEquals(1, twoGallon.compare(oneGallon));
+    assertEquals(-1, oneGallon.compare(twoGallon));
   }
 
   @Test
