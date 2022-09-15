@@ -1,6 +1,6 @@
 package com.tw.step8.assignment1;
 
-import com.tw.step8.assignment1.exception.InvaidSideException;
+import com.tw.step8.assignment1.exception.InvalidSideException;
 
 public class Rectangle {
   private final double length;
@@ -11,13 +11,13 @@ public class Rectangle {
     this.breadth = breadth;
   }
 
-  public static Rectangle createRectangle(double length, double breadth) throws InvaidSideException {
+  public static Rectangle createRectangle(double length, double breadth) throws InvalidSideException {
     if (length <= 0 || breadth <= 0) {
-      throw new InvaidSideException(length, breadth);
+      throw new InvalidSideException(length, breadth);
     }
     return new Rectangle(length, breadth);
   }
-  public static Rectangle createSquare(double side) throws InvaidSideException {
+  public static Rectangle createSquare(double side) throws InvalidSideException {
     return Rectangle.createRectangle(side, side);
   }
 

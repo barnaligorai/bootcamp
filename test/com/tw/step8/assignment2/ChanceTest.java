@@ -1,6 +1,6 @@
 package com.tw.step8.assignment2;
 
-import com.tw.step8.assignment2.exception.InvalidProbabilityException;
+import com.tw.step8.assignment2.exception.InvalidChanceException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,25 +8,21 @@ import static org.junit.jupiter.api.Assertions.*;
 class ChanceTest {
   @Test
   void shouldThrowExceptionForInvalidProbability() {
-    try {
-      Chance chance = Chance.create(5.9);
-    } catch (InvalidProbabilityException e) {
-      assertEquals("Invalid chance representation : 5.9", e.getMessage());
-    }
+    assertThrows(InvalidChanceException.class, () -> Chance.create(5.9));
   }
 
   @Test
-  void shouldReturnComplementOfProbability() throws InvalidProbabilityException {
+  void shouldReturnNotOfChance() throws InvalidChanceException {
     Chance chance = Chance.create(0.9);
     Chance expected = Chance.create(0.1);
 
-    Chance actual = chance.complement();
+    Chance actual = chance.not();
 
     assertTrue(actual.isDifferenceWithinDelta(expected, 0.1));
   }
 
   @Test
-  void shouldReturnAndOfProbability() throws InvalidProbabilityException {
+  void shouldReturnAndOfChance() throws InvalidChanceException {
     Chance chanceOfGettingOneInDice = Chance.create(1.0 / 6);
     Chance chanceOfGettingTails = Chance.create(0.5);
     Chance expected = Chance.create(0.08);
@@ -37,7 +33,7 @@ class ChanceTest {
   }
 
   @Test
-  void shouldReturnOrOfProbability() throws InvalidProbabilityException {
+  void shouldReturnOrOfChance() throws InvalidChanceException {
     Chance chanceOfGettingTwoInDice = Chance.create(1.0 / 6);
     Chance chanceOfGettingTails = Chance.create(0.5);
     Chance expectedChance1 = Chance.create(7.0 / 12);
@@ -47,6 +43,6 @@ class ChanceTest {
     Chance actualChance2 = chanceOfGettingTwoInDice.or(chanceOfGettingTwoInDice);
 
     assertTrue(actualChance1.isDifferenceWithinDelta(expectedChance1, 0.1));
-    assertTrue(expectedChance2.isDifferenceWithinDelta(expectedChance2, 0.01));
+    assertTrue(actualChance2.isDifferenceWithinDelta(expectedChance2, 0.01));
   }
 }

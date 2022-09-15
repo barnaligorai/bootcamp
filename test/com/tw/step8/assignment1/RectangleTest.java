@@ -1,13 +1,13 @@
 package com.tw.step8.assignment1;
 
-import com.tw.step8.assignment1.exception.InvaidSideException;
+import com.tw.step8.assignment1.exception.InvalidSideException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 class RectangleTest {
 
   @Test
-  void shouldReturnAreaOfRectangle() throws InvaidSideException {
+  void shouldReturnAreaOfRectangle() throws InvalidSideException {
     Rectangle rectangle = Rectangle.createRectangle(10.0, 10.0);
     Rectangle square = Rectangle.createSquare(20.0);
 
@@ -16,7 +16,7 @@ class RectangleTest {
   }
 
   @Test
-  void shouldReturnPerimeterOfRectangle() throws InvaidSideException {
+  void shouldReturnPerimeterOfRectangle() throws InvalidSideException {
     Rectangle rectangle = Rectangle.createRectangle(10.0, 10.0);
     Rectangle square = Rectangle.createSquare(20.0);
 
@@ -26,23 +26,11 @@ class RectangleTest {
 
   @Test
   void shouldThrowExceptionWhenSideIsNegative() {
-    String expected = "Invalid side : [-10.0, 10.0]";
-
-    try {
-      Rectangle rectangle = Rectangle.createRectangle(-10.0, 10.0);
-    } catch (InvaidSideException e) {
-      assertEquals(expected, e.getMessage());
-    }
+    assertThrows(InvalidSideException.class, ()-> Rectangle.createRectangle(-10,1));
   }
 
   @Test
   void shouldThrowExceptionWhenSideIsZero() {
-    String expected = "Invalid side : [0.0, 10.0]";
-
-    try {
-      Rectangle rectangle = Rectangle.createRectangle(0.0, 10.0);
-    } catch (InvaidSideException e) {
-      assertEquals(expected, e.getMessage());
-    }
+    assertThrows(InvalidSideException.class, ()-> Rectangle.createRectangle(0,1));
   }
 }
