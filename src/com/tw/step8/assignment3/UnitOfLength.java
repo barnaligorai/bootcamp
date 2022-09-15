@@ -9,8 +9,9 @@ public enum UnitOfLength implements Unit {
     this.baseValueInInch = baseValueInInch;
   }
 
-  public double getBaseValue() {
-    return baseValueInInch;
+  @Override
+  public double aggregateValue(double value) {
+    return this.baseValueInInch * value;
   }
 
   public Unit getBase() {

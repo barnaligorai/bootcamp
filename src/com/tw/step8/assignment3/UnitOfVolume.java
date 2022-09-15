@@ -9,8 +9,9 @@ public enum UnitOfVolume implements Unit {
     this.baseValueInLiter = baseValueInLiter;
   }
 
-  public double getBaseValue() {
-    return baseValueInLiter;
+  @Override
+  public double aggregateValue(double value) {
+    return this.baseValueInLiter * value;
   }
 
   @Override

@@ -72,4 +72,16 @@ class MeasurementTest {
     assertTrue(actualVolume.isEquivalent(expectedVolume, 0.01));
   }
 
+  @Test
+  void shouldCompareTemperature() {
+    Measurement<UnitOfTemperature> celcius100 = new Measurement<>(UnitOfTemperature.CELCIUS, 100);
+    Measurement<UnitOfTemperature> celcius0 = new Measurement<>(UnitOfTemperature.CELCIUS, 0);
+    Measurement<UnitOfTemperature> fahrenheit32 = new Measurement<>(UnitOfTemperature.FAHRENHEIT, 32);
+    Measurement<UnitOfTemperature> fahrenheit212 = new Measurement<>(UnitOfTemperature.FAHRENHEIT, 212);
+
+    assertEquals(0, celcius100.compare(fahrenheit212));
+    assertEquals(0, celcius0.compare(fahrenheit32));
+    assertEquals(-1, celcius0.compare(celcius100));
+    assertEquals(1, celcius100.compare(celcius0));
+  }
 }

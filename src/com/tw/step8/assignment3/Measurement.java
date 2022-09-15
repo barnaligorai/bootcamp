@@ -13,7 +13,7 @@ public class Measurement<U> {
   }
 
   private double convertToBase() {
-    return this.value * this.unit.getBaseValue();
+    return this.unit.aggregateValue(this.value);
   }
 
   public int compare(Measurement<U> measurement) {
