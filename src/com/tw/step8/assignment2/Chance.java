@@ -3,6 +3,8 @@ package com.tw.step8.assignment2;
 import com.tw.step8.assignment2.exception.InvalidChanceException;
 
 public class Chance {
+  public static final int CERTAINTY = 1;
+  public static final int IMPOSSIBILITY = 0;
   private final double value;
 
   private Chance(double value) {
@@ -10,7 +12,7 @@ public class Chance {
   }
 
   public static Chance create(double chance) throws InvalidChanceException {
-    if (chance <= 1 && chance >= 0) {
+    if (chance <= CERTAINTY && chance >= IMPOSSIBILITY) {
       return new Chance(chance);
     }
     throw new InvalidChanceException(chance);
