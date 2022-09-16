@@ -7,8 +7,10 @@ import java.util.ArrayList;
 public class ParkingLots {
 
   private final ArrayList<ParkingLot> parkingLots;
+  private final Notifier notifier;
 
-  public ParkingLots() {
+  public ParkingLots(Notifier notifier) {
+    this.notifier = notifier;
     this.parkingLots = new ArrayList<ParkingLot>();
   }
 
@@ -19,6 +21,8 @@ public class ParkingLots {
 
   public boolean parkIn(int lotID, Car vehicle) {
     ParkingLot parkingLot = this.parkingLots.get(lotID - 1);
+    this.notifier.notify(parkingLot.info());
+
     return parkingLot.park(vehicle);
   }
 
@@ -31,7 +35,6 @@ public class ParkingLots {
     ParkingLot parkingLot = this.parkingLots.get(lotID - 1);
     return parkingLot.is80PercentFull();
   }
-
 
   public ArrayList<ParkingLotData> info() {
     ArrayList<ParkingLotData> parkingLotsData = new ArrayList<ParkingLotData>();

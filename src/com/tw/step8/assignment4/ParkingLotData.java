@@ -11,6 +11,10 @@ public class ParkingLotData {
     this.slotsOccupied = slotsOccupied;
   }
 
+  public double spaceOccupied() {
+    return (this.slotsOccupied * 100.0) / this.totalNumberOfSlots;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
