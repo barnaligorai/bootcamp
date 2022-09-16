@@ -3,6 +3,9 @@ package com.tw.step8.assignment4;
 import com.tw.step8.assignment4.exception.InvalidParkingLotSizeExpection;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingLotsTest {
@@ -60,5 +63,15 @@ class ParkingLotsTest {
     parkingLots.parkIn(lotID, car);
 
     assertTrue(parkingLots.is80PercentFull(lotID));
+  }
+
+  @Test
+  void shouldGiveParkingLotsInfo() throws InvalidParkingLotSizeExpection {
+    ParkingLots parkingLots = new ParkingLots();
+    int lot1 = parkingLots.add(1);
+    ParkingLotData parkingLotData = new ParkingLotData(1, 1, 0);
+    ArrayList<ParkingLotData> expectedParkingLotsData = new ArrayList<>(Arrays.asList(parkingLotData));
+
+    assertEquals(expectedParkingLotsData, parkingLots.info());
   }
 }

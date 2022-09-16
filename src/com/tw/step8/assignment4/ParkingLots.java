@@ -13,7 +13,7 @@ public class ParkingLots {
   }
 
   public int add(int size) throws InvalidParkingLotSizeExpection {
-    this.parkingLots.add(ParkingLot.create(size));
+    this.parkingLots.add(ParkingLot.create(this.parkingLots.size() + 1, size));
     return this.parkingLots.size();
   }
 
@@ -30,5 +30,14 @@ public class ParkingLots {
   public boolean is80PercentFull(int lotID) {
     ParkingLot parkingLot = this.parkingLots.get(lotID - 1);
     return parkingLot.is80PercentFull();
+  }
+
+
+  public ArrayList<ParkingLotData> info() {
+    ArrayList<ParkingLotData> parkingLotsData = new ArrayList<ParkingLotData>();
+    for (ParkingLot parkingLot : this.parkingLots) {
+      parkingLotsData.add(parkingLot.info());
+    }
+    return parkingLotsData;
   }
 }
