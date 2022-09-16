@@ -1,5 +1,6 @@
 package com.tw.step8.assignment4;
 
+import com.tw.step8.assignment4.exception.InvalidParkingLotSizeExpection;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,15 +8,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class ParkingLotTest {
 
   @Test
-  void shouldParkAVehicle() {
-    ParkingLot parkingLot = new ParkingLot(2);
+  void shouldThrowInvalidSizeException() {
+    assertThrows(InvalidParkingLotSizeExpection.class, () -> ParkingLot.create(0));
+  }
+
+  @Test
+  void shouldParkAVehicle() throws InvalidParkingLotSizeExpection {
+    ParkingLot parkingLot = ParkingLot.create(2);
 
     assertTrue(parkingLot.park(Vehicle.CAR));
   }
 
   @Test
-  void shouldNotParkAVehicleWhenParkingLotIsFull() {
-    ParkingLot parkingLot = new ParkingLot(1);
+  void shouldNotParkAVehicleWhenParkingLotIsFull() throws InvalidParkingLotSizeExpection {
+    ParkingLot parkingLot = ParkingLot.create(1);
 
     parkingLot.park(Vehicle.CAR);
 
@@ -23,15 +29,15 @@ class ParkingLotTest {
   }
 
   @Test
-  void shouldTellIfTheParkingLotIsNotFull() {
-    ParkingLot parkingLot = new ParkingLot(1);
+  void shouldTellIfTheParkingLotIsNotFull() throws InvalidParkingLotSizeExpection {
+    ParkingLot parkingLot = ParkingLot.create(1);
 
     assertFalse(parkingLot.isFull());
   }
 
   @Test
-  void shouldTellWhenTheParkingLotIsFull() {
-    ParkingLot parkingLot = new ParkingLot(1);
+  void shouldTellWhenTheParkingLotIsFull() throws InvalidParkingLotSizeExpection {
+    ParkingLot parkingLot = ParkingLot.create(1);
 
     parkingLot.park(Vehicle.CAR);
 
