@@ -10,30 +10,30 @@ class ParkingLotTest {
   void shouldParkAVehicle() {
     ParkingLot parkingLot = new ParkingLot(2);
 
-    assertTrue(parkingLot.park("Car1"));
+    assertTrue(parkingLot.park(Vehicle.CAR));
   }
 
   @Test
-  void shouldNotParkAVehicleWhenLotIsFull() {
+  void shouldNotParkAVehicleWhenParkingLotIsFull() {
     ParkingLot parkingLot = new ParkingLot(1);
 
-    parkingLot.park("Car1");
+    parkingLot.park(Vehicle.CAR);
 
-    assertFalse(parkingLot.park("Car2"));
+    assertFalse(parkingLot.park(Vehicle.CAR));
   }
 
   @Test
-  void shouldTellIfTheLotIsNotFull() {
+  void shouldTellIfTheParkingLotIsNotFull() {
     ParkingLot parkingLot = new ParkingLot(1);
 
     assertFalse(parkingLot.isFull());
   }
 
   @Test
-  void shouldTellWhenTheLotIsFull() {
+  void shouldTellWhenTheParkingLotIsFull() {
     ParkingLot parkingLot = new ParkingLot(1);
 
-    parkingLot.park("Car");
+    parkingLot.park(Vehicle.CAR);
 
     assertTrue(parkingLot.isFull());
   }
