@@ -10,7 +10,7 @@ public enum UnitOfLength implements Unit {
   }
 
   @Override
-  public double aggregateValue(double value) {
+  public double toBase(double value) {
     return this.baseValueInInch * value;
   }
 

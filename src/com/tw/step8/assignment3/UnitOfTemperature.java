@@ -4,7 +4,7 @@ public enum UnitOfTemperature implements Unit {
   CELCIUS, FAHRENHEIT;
 
   @Override
-  public double aggregateValue(double value) {
+  public double toBase(double value) {
     if (this == CELCIUS) {
       return value;
     }
