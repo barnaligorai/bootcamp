@@ -17,8 +17,18 @@ public class ParkingLots {
     return this.parkingLots.size();
   }
 
-  public boolean park(int lotID, Vehicle vehicle) {
+  public boolean parkIn(int lotID, Car vehicle) {
     ParkingLot parkingLot = this.parkingLots.get(lotID - 1);
     return parkingLot.park(vehicle);
+  }
+
+  public boolean isFull(int lotID) {
+    ParkingLot parkingLot = this.parkingLots.get(lotID - 1);
+    return parkingLot.isFull();
+  }
+
+  public boolean is80PercentFull(int lotID) {
+    ParkingLot parkingLot = this.parkingLots.get(lotID - 1);
+    return parkingLot.is80PercentFull();
   }
 }

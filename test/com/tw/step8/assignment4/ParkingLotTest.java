@@ -16,16 +16,20 @@ class ParkingLotTest {
   void shouldParkAVehicle() throws InvalidParkingLotSizeExpection {
     ParkingLot parkingLot = ParkingLot.create(2);
 
-    assertTrue(parkingLot.park(Vehicle.CAR));
+    Car car = new Car(1);
+
+    assertTrue(parkingLot.park(car));
   }
 
   @Test
   void shouldNotParkAVehicleWhenParkingLotIsFull() throws InvalidParkingLotSizeExpection {
     ParkingLot parkingLot = ParkingLot.create(1);
+    Car car1 = new Car(1);
+    Car car2 = new Car(2);
 
-    parkingLot.park(Vehicle.CAR);
+    parkingLot.park(car1);
 
-    assertFalse(parkingLot.park(Vehicle.CAR));
+    assertFalse(parkingLot.park(car2));
   }
 
   @Test
@@ -38,9 +42,29 @@ class ParkingLotTest {
   @Test
   void shouldTellWhenTheParkingLotIsFull() throws InvalidParkingLotSizeExpection {
     ParkingLot parkingLot = ParkingLot.create(1);
+    Car car = new Car(1);
 
-    parkingLot.park(Vehicle.CAR);
+    parkingLot.park(car);
 
     assertTrue(parkingLot.isFull());
+  }
+
+  @Test
+  void shouldTellTheParkingLotIsNot80PercentFull() throws InvalidParkingLotSizeExpection {
+    ParkingLot parkingLot = ParkingLot.create(10);
+
+    assertFalse(parkingLot.is80PercentFull());
+  }
+
+  @Test
+  void shouldTellTheParkingLotIs80PercentFull() throws InvalidParkingLotSizeExpection {
+    ParkingLot parkingLot = ParkingLot.create(2);
+    Car car1 = new Car(1);
+    Car car2 = new Car(2);
+
+    parkingLot.park(car1);
+    parkingLot.park(car2);
+
+    assertTrue(parkingLot.is80PercentFull());
   }
 }

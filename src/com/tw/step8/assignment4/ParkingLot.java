@@ -6,11 +6,11 @@ import java.util.ArrayList;
 
 public class ParkingLot {
   private final int size;
-  private final ArrayList<Vehicle> space;
+  private final ArrayList<Car> space;
 
   private ParkingLot(int size) {
     this.size = size;
-    this.space = new ArrayList<Vehicle>(size);
+    this.space = new ArrayList<Car>(size);
   }
 
   public static ParkingLot create(int size) throws InvalidParkingLotSizeExpection {
@@ -20,7 +20,7 @@ public class ParkingLot {
     return new ParkingLot(size);
   }
 
-  public boolean park(Vehicle vehicle) {
+  public boolean park(Car vehicle) {
     if (!this.isFull()) {
       this.space.add(vehicle);
       return true;
@@ -33,4 +33,11 @@ public class ParkingLot {
     return this.space.size() >= this.size;
   }
 
+  public boolean is80PercentFull() {
+    return this.spaceOccupied() >= 80;
+  }
+
+  private int spaceOccupied() {
+    return (this.space.size() / this.size) * 100;
+  }
 }
