@@ -5,6 +5,9 @@ import com.tw.step8.assignment4.exception.InvalidParkingLotSizeExpection;
 import java.util.ArrayList;
 
 public class ParkingLot {
+  public static final double MAX_PERCENTAGE = 100.0;
+  public static final int EIGHTY_PERCENTAGE = 80;
+  public static final int TWENTY_PERCENTAGE = 20;
   private final int size;
   private final ArrayList<Car> space;
   private final int id;
@@ -36,15 +39,15 @@ public class ParkingLot {
   }
 
   public boolean is80PercentFull() {
-    return this.spaceOccupied() >= 80;
+    return this.spaceOccupied() >= EIGHTY_PERCENTAGE;
   }
 
   private double spaceOccupied() {
-    return (this.space.size() * 100.0) / this.size;
+    return (this.space.size() * MAX_PERCENTAGE) / this.size;
   }
 
   public boolean is20PercentFull() {
-    return this.spaceOccupied() >= 20;
+    return this.spaceOccupied() >= TWENTY_PERCENTAGE;
   }
 
   public ParkingLotData info() {

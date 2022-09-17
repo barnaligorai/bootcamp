@@ -18,7 +18,7 @@ public class Notifier {
     double spaceOccupied = parkingLotData.spaceOccupied();
     for (Subscriber subscriber : this.subscribers) {
       if (isInRange(spaceOccupied, subscriber)) {
-        subscriber.notifyMe();
+        subscriber.notifyMe(parkingLotData.id);
       }
     }
     return true;

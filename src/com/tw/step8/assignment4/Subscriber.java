@@ -11,7 +11,7 @@ public enum Subscriber {
     this.maxLimit = maxLimit;
   }
 
-  public void notifyMe() {
-    System.out.println(this.toString() + " notified");
+  public void notifyMe(Integer lotId) {
+    System.out.println(this.toString() + " notified for lot number :" + lotId);
   }
 }

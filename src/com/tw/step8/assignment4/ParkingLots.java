@@ -19,11 +19,11 @@ public class ParkingLots {
     return this.parkingLots.size();
   }
 
-  public boolean parkIn(int lotID, Car vehicle) {
+  public boolean parkIn(int lotID, Car car) {
     ParkingLot parkingLot = this.parkingLots.get(lotID - 1);
     this.notifier.notify(parkingLot.info());
 
-    return parkingLot.park(vehicle);
+    return parkingLot.park(car);
   }
 
   public boolean isFull(int lotID) {
